@@ -21,12 +21,10 @@ namespace bkeproject
 
         static void Main(string[] args){
             Program test = new Program();
-            //test.explanation();
-            //test.startPlayer();
-            //test.drawEmptyBoard();
             test.board();
-            test.printBoard(); 
-            //test.setFirst();
+            test.explanation();
+            test.startPlayer();
+            test.board();
             test.changeGameboard();
         }
 
@@ -43,23 +41,17 @@ namespace bkeproject
         }
         
         //welke speler mag beginnen? (random)
-        public string namePlayerOne(){
+        public void namePlayers(){
             string introduction = "Om te bepalen wie er mag beginnen, hebben we jullie namen nodig!";
             Console.WriteLine(introduction);
             Console.WriteLine("Uitdager, wat is je naam?");
             namePlayer1 = Console.ReadLine();
-            return namePlayer1;
-        }
-        public string namePlayerTwo(){    
             Console.WriteLine("En tegenstander, wat is jouw naam?");
             namePlayer2 = Console.ReadLine();
-            Console.WriteLine("Hi, " + namePlayer2);
-            return namePlayer2;
         }
 
         public void startPlayer(){
-            namePlayerOne();
-            namePlayerTwo();
+            namePlayers();
             Random number = new Random();
             var test = number.Next(0, 2);
             //Console.WriteLine(test);
@@ -68,6 +60,7 @@ namespace bkeproject
             }
             else {
                 Console.WriteLine(namePlayer2 + ", jij mag beginnen!");
+                namePlayer2 = namePlayer1;
             }
         }
 
@@ -128,6 +121,9 @@ namespace bkeproject
                 array[index1] = "X"; 
                 printBoard();
                 winner = checkWinner();
+                if(winner == true){
+                    break;
+                }
                 check1a = true;
                 check1b = true;
                 check1c = true;
@@ -151,6 +147,9 @@ namespace bkeproject
                 array[index2] = "O"; 
                 printBoard();
                 winner = checkWinner();
+                if(winner == true){
+                    break;
+                }
                 }
         }
 
@@ -192,14 +191,14 @@ namespace bkeproject
         }
 
         public bool checkWinner(){
-            if ((array[0] == array[1] && array[0] == array[2])){
-                //||(array[3] == array[4] && array[3] == array[5])
-                //||(array[6] == array[7] && array[6] == array[8])
-                //||(array[0] == array[3] && array[0] == array[6])
-                //||(array[1] == array[4] && array[1] == array[7])
-                //||(array[2] == array[5] && array[2] == array[8])
-                //||(array[0] == array[4] && array[0] == array[8])
-                //||(array[2] == array[4] && array[2] == array[6])
+            if ((array[0] == array[1] && array[0] == array[2]) 
+                ||(array[3] == array[4] && array[3] == array[5])
+                ||(array[6] == array[7] && array[6] == array[8])
+                ||(array[0] == array[3] && array[0] == array[6])
+                ||(array[1] == array[4] && array[1] == array[7])
+                ||(array[2] == array[5] && array[2] == array[8])
+                ||(array[0] == array[4] && array[0] == array[8])
+                ||(array[2] == array[4] && array[2] == array[6])){
                 if(array[0] == "X"){
                     Console.WriteLine(namePlayer1 + " jij hebt gewonnen!");
                     return true;
