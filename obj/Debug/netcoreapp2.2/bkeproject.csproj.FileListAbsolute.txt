@@ -1,0 +1,11 @@
+/Users/eva/bkeproject/bin/Debug/netcoreapp2.2/bkeproject.deps.json
+/Users/eva/bkeproject/bin/Debug/netcoreapp2.2/bkeproject.runtimeconfig.json
+/Users/eva/bkeproject/bin/Debug/netcoreapp2.2/bkeproject.runtimeconfig.dev.json
+/Users/eva/bkeproject/bin/Debug/netcoreapp2.2/bkeproject.dll
+/Users/eva/bkeproject/bin/Debug/netcoreapp2.2/bkeproject.pdb
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.csprojAssemblyReference.cache
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.csproj.CoreCompileInputs.cache
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.AssemblyInfoInputs.cache
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.AssemblyInfo.cs
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.dll
+/Users/eva/bkeproject/obj/Debug/netcoreapp2.2/bkeproject.pdb
