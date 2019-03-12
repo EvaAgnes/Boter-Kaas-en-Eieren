@@ -9,15 +9,16 @@ namespace bkeproject
     
     class Program
     {
-        static void DisplayArray(string[] array){
-            Console.WriteLine(String.Join(" ", array));
-        }
-
+        string namePlayerStart1;
+        string namePlayerStart2;
         string namePlayer1;
         string namePlayer2;
         string inputPlayer1;
         string inputPlayer2;
         string[] array;
+        int index1;
+        int index2;
+        
 
         static void Main(string[] args){
             Program test = new Program();
@@ -45,9 +46,9 @@ namespace bkeproject
             string introduction = "Om te bepalen wie er mag beginnen, hebben we jullie namen nodig!";
             Console.WriteLine(introduction);
             Console.WriteLine("Uitdager, wat is je naam?");
-            namePlayer1 = Console.ReadLine();
+            namePlayerStart1 = Console.ReadLine();
             Console.WriteLine("En tegenstander, wat is jouw naam?");
-            namePlayer2 = Console.ReadLine();
+            namePlayerStart2 = Console.ReadLine();
         }
 
         public void startPlayer(){
@@ -56,11 +57,14 @@ namespace bkeproject
             var test = number.Next(0, 2);
             //Console.WriteLine(test);
             if (test == 1){
-                Console.WriteLine(namePlayer1 + ", jij mag beginnen!");
+                Console.WriteLine(namePlayerStart1 + ", jij mag beginnen!");
+                namePlayer1 = namePlayerStart1;
+                namePlayer2 = namePlayerStart2;
             }
             else {
                 Console.WriteLine(namePlayer2 + ", jij mag beginnen!");
-                namePlayer2 = namePlayer1;
+                namePlayer1 = namePlayerStart2;
+                namePlayer2 = namePlayerStart1;
             }
         }
 
@@ -103,7 +107,7 @@ namespace bkeproject
         public void changeGameboard(){
             bool winner = false;
             while(winner == false){
-                var index1 = 0;
+                
                 bool check1a = true;
                 bool check1b = true;
                 bool check1c = true;
@@ -128,12 +132,11 @@ namespace bkeproject
                 check1b = true;
                 check1c = true;
 
-                var index2 = 0;
                 bool check2a = true;
                 bool check2b = true;
                 bool check2c = true;
                 while(check2a == true || check2b == true || check2c == true){
-                    Console.WriteLine(namePlayer2+ ", wat is jouw set?");
+                    Console.WriteLine(namePlayer2 + ", wat is jouw set?");
                     inputPlayer2 = Console.ReadLine();
                     check2c = checkLetter(inputPlayer2);
                     if (check2c == false){
@@ -191,19 +194,19 @@ namespace bkeproject
         }
 
         public bool checkWinner(){
-            if ((array[0] == array[1] && array[0] == array[2]) 
-                ||(array[3] == array[4] && array[3] == array[5])
-                ||(array[6] == array[7] && array[6] == array[8])
-                ||(array[0] == array[3] && array[0] == array[6])
-                ||(array[1] == array[4] && array[1] == array[7])
-                ||(array[2] == array[5] && array[2] == array[8])
-                ||(array[0] == array[4] && array[0] == array[8])
-                ||(array[2] == array[4] && array[2] == array[6])){
-                if(array[0] == "X"){
+            if (((array[0] == "X" || array[0] == "O") && array[0] == array[1] && array[0] == array[2]) 
+                ||((array[3] == "X" || array[3] == "O") && array[3] == array[4] && array[3] == array[5])
+                ||((array[6] == "X" || array[6] == "O") && array[6] == array[7] && array[6] == array[8])
+                ||((array[0] == "X" || array[0] == "O") && array[0] == array[3] && array[0] == array[6])
+                ||((array[1] == "X" || array[1] == "O") && array[1] == array[4] && array[1] == array[7])
+                ||((array[2] == "X" || array[2] == "O") && array[2] == array[5] && array[2] == array[8])
+                ||((array[0] == "X" || array[0] == "O") && array[0] == array[4] && array[0] == array[8])
+                ||((array[2] == "X" || array[2] == "O") && array[2] == array[4] && array[2] == array[6])){
+                if(array[index1] == "X"){
                     Console.WriteLine(namePlayer1 + " jij hebt gewonnen!");
                     return true;
                 }
-                if(array[0] == "O"){
+                if(array[index2] == "O"){
                    Console.WriteLine(namePlayer2 + " jij hebt gewonnen!");
                    return true;
                 }
@@ -217,30 +220,4 @@ namespace bkeproject
         }
     }
 }
-
-//string[] result = Array.ConvertAll(array, x=>x.ToString());
-//DisplayArray(result);
-
-  //array[index1] = "X"; 
-            //winner = checkWinner();
-            //printBoard();
-
-            /*var index2 = 0;
-            bool check2a = true;
-            bool check2b = true;
-            bool check2c = true;
-            while(check2a == true || check2b == true || check2c == true){
-                Console.WriteLine(namePlayer2+ ", wat is jouw set?");
-                inputPlayer2 = Console.ReadLine(); 
-                check2c = checkLetter(inputPlayer2);
-                if (check2c == false){  
-                    var numberInputPlayer2 = int.Parse(inputPlayer2);
-                    index2 = numberInputPlayer2 - 1;
-                    check2a = checkInput1(index2);
-                    check2b = checkInput2(numberInputPlayer2);
-                }
-            }
-                array[index2] = "O";
-                winner = checkWinner();
-                printBoard();*/
 
