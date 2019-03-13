@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace bkeproject
 {
 
-public class GameBoard{
+    public class GameBoard{
 
-         string[] array;
+        string[] array;
          
         public void board(){
             array = new string[]{" "," "," "," "," "," "," "," "," "};
