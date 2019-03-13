@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace bkeproject
 {
-    
-    class Program
+    public class Program
     {
         string namePlayerStart1;
         string namePlayerStart2;
@@ -15,22 +14,27 @@ namespace bkeproject
         string namePlayer2;
         string inputPlayer1;
         string inputPlayer2;
-        string[] array;
         int index1;
         int index2;
-        
+        GameBoard board;
 
         static void Main(string[] args){
-            Program test = new Program();
-            test.board();
+            var test = new Program();
             test.explanation();
             test.startPlayer();
-            test.board();
             test.changeGameboard();
         }
 
-        //uitleg spel + print number board
-        public void explanation(){
+        Program(){
+            board = new GameBoard();
+            board.board();
+        }
+        
+    
+    //Public class Game{}
+
+    
+         public void explanation(){
             string explanation = "Welkom bij het spel boter-kaas-en-eieren! Dit spel speel je met twee spelers.\n"+
             "Zoals je wellicht weet wordt het spel gespeeld op een speelveld van 3 bij 3 hokjes. In het begin\n" +
             "zijn alle velden leeg. De eerste speler zet een 'X' en de andere speler een 'O'. Degene die 3 van\n" +
@@ -40,35 +44,8 @@ namespace bkeproject
             Console.WriteLine(explanation);
             drawNumberBoard();
         }
-        
-        //welke speler mag beginnen? (random)
-        public void namePlayers(){
-            string introduction = "Om te bepalen wie er mag beginnen, hebben we jullie namen nodig!";
-            Console.WriteLine(introduction);
-            Console.WriteLine("Uitdager, wat is je naam?");
-            namePlayerStart1 = Console.ReadLine();
-            Console.WriteLine("En tegenstander, wat is jouw naam?");
-            namePlayerStart2 = Console.ReadLine();
-        }
 
-        public void startPlayer(){
-            namePlayers();
-            Random number = new Random();
-            var test = number.Next(0, 2);
-            //Console.WriteLine(test);
-            if (test == 1){
-                Console.WriteLine(namePlayerStart1 + ", jij mag beginnen!");
-                namePlayer1 = namePlayerStart1;
-                namePlayer2 = namePlayerStart2;
-            }
-            else {
-                Console.WriteLine(namePlayer2 + ", jij mag beginnen!");
-                namePlayer1 = namePlayerStart2;
-                namePlayer2 = namePlayerStart1;
-            }
-        }
-
-        public void drawNumberBoard(){
+          public void drawNumberBoard(){
             int[] arrayNumber = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
             int rowLength = arrayNumber.GetLength(0);
             Console.Write("------------------\n");
@@ -84,30 +61,35 @@ namespace bkeproject
             }   
         }
 
-         public void board(){
-            array = new string[]{" "," "," "," "," "," "," "," "," "};
+     //welke speler mag beginnen? (random)
+        public void namePlayers(){
+            string introduction = "Om te bepalen wie er mag beginnen, hebben we jullie namen nodig!";
+            Console.WriteLine(introduction);
+            Console.WriteLine("Uitdager, wat is je naam?");
+            namePlayerStart1 = Console.ReadLine();
+            Console.WriteLine("En tegenstander, wat is jouw naam?");
+            namePlayerStart2 = Console.ReadLine();
         }
-        
-        //pint nice spelbord
-        public void printBoard(){
-            int rowLength = array.GetLength(0);
-            Console.Write("------------------\n");
-            for (int i = 0; i < rowLength; i++){
-            Console.Write(string.Format("  {0}  ", array[i]));  
-            if (i % 3 == 2){
-                Console.Write("\n");
-                Console.Write("------------------\n");
+
+        public void startPlayer(){
+            namePlayers();
+            Random number = new Random();
+            var test = number.Next(0, 2);
+            if (test == 1){
+                Console.WriteLine(namePlayerStart1 + ", jij mag beginnen!");
+                namePlayer1 = namePlayerStart1;
+                namePlayer2 = namePlayerStart2;
             }
             else {
-                Console.Write("|");
-            }
+                Console.WriteLine(namePlayer2 + ", jij mag beginnen!");
+                namePlayer1 = namePlayerStart2;
+                namePlayer2 = namePlayerStart1;
             }
         }
 
         public void changeGameboard(){
             bool winner = false;
             while(winner == false){
-                
                 bool check1a = true;
                 bool check1b = true;
                 bool check1c = true;
@@ -122,9 +104,8 @@ namespace bkeproject
                         check1b = checkInput2(numberInputPlayer1);
                     }
                 }
-                array[index1] = "X"; 
-                printBoard();
-                winner = checkWinner();
+                board.drawOnBoard(index1, "X");
+                winner = board.checkWinner1(index1, namePlayer1);
                 if(winner == true){
                     break;
                 }
@@ -145,11 +126,9 @@ namespace bkeproject
                         check2a = checkInput1(index2);
                         check2b = checkInput2(numberInputPlayer2);
                     }
-                    winner = checkWinner();
                 }
-                array[index2] = "O"; 
-                printBoard();
-                winner = checkWinner();
+                board.drawOnBoard(index2, "O");
+                winner = board.checkWinner2(index2, namePlayer2);
                 if(winner == true){
                     break;
                 }
@@ -159,7 +138,7 @@ namespace bkeproject
         public bool checkInput1(int currentIndex){
             var input = currentIndex + 1;
             if(input >= 1 && input <= 9){
-                if(array[currentIndex] == "X" || array[currentIndex] == "O"){
+                if(board.checkLocationFree(currentIndex) == true){
                 Console.WriteLine("Dit hokje is al bezet! Kies een ander hokje.");
                 return true;
                 }
@@ -187,32 +166,6 @@ namespace bkeproject
             if(canConvert == false){
                 Console.WriteLine("Dit is geen getal! Kies een getal tussen 1 en 9:");
                 return true;
-            }
-            else {
-                return false;
-            }
-        }
-
-        public bool checkWinner(){
-            if (((array[0] == "X" || array[0] == "O") && array[0] == array[1] && array[0] == array[2]) 
-                ||((array[3] == "X" || array[3] == "O") && array[3] == array[4] && array[3] == array[5])
-                ||((array[6] == "X" || array[6] == "O") && array[6] == array[7] && array[6] == array[8])
-                ||((array[0] == "X" || array[0] == "O") && array[0] == array[3] && array[0] == array[6])
-                ||((array[1] == "X" || array[1] == "O") && array[1] == array[4] && array[1] == array[7])
-                ||((array[2] == "X" || array[2] == "O") && array[2] == array[5] && array[2] == array[8])
-                ||((array[0] == "X" || array[0] == "O") && array[0] == array[4] && array[0] == array[8])
-                ||((array[2] == "X" || array[2] == "O") && array[2] == array[4] && array[2] == array[6])){
-                if(array[index1] == "X"){
-                    Console.WriteLine(namePlayer1 + " jij hebt gewonnen!");
-                    return true;
-                }
-                if(array[index2] == "O"){
-                   Console.WriteLine(namePlayer2 + " jij hebt gewonnen!");
-                   return true;
-                }
-                else{
-                    return false;
-                }
             }
             else {
                 return false;
