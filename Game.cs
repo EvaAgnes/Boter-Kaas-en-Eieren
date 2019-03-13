@@ -63,6 +63,7 @@ namespace bkeproject
 
         public void changeGameboard(){
             bool winner = false;
+            bool draw = false;
             while(winner == false){
                 bool check1a = true;
                 bool check1b = true;
@@ -80,7 +81,8 @@ namespace bkeproject
                 }
                 board.drawOnBoard(index1, "X");
                 winner = board.checkWinner(index1, namePlayer1);
-                if(winner == true){
+                draw = board.checkDraw();
+                if(winner == true || draw == true){
                     break;
                 }
                 check1a = true;
@@ -103,10 +105,11 @@ namespace bkeproject
                 }
                 board.drawOnBoard(index2, "O");
                 winner = board.checkWinner(index2, namePlayer2);
-                if(winner == true){
+                draw = board.checkDraw();
+                if(winner == true || draw == true){
                     break;
                 }
-                }
+            }
         }
 
         private bool checkInput1(int currentIndex){
