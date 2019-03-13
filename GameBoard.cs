@@ -70,7 +70,7 @@ namespace bkeproject
         public bool checkDraw(){
             if ((array[0] == "X" || array[0] == "O") && (array[1] == "X" || array[1] == "O") && (array[2] == "X" || array[2] == "O") &&
             (array[3] == "X" || array[3] == "O") && (array[4] == "X" || array[4] == "O") && (array[5] == "X" || array[5] == "O") &&
-            (array[6] == "X" || array[6] == "O") && (array[7] == "X" || array[7] == "O") && (array[8] == "X" || boardarray[8] == "O")){
+            (array[6] == "X" || array[6] == "O") && (array[7] == "X" || array[7] == "O") && (array[8] == "X" || array[8] == "O")){
                 Console.WriteLine("Het is gelijkspel!");
                 return true;
             }
