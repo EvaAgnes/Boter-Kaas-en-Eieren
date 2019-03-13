@@ -17,10 +17,10 @@ namespace bkeproject
         
         //print nice spelbord
         private void printBoard(string[] boardarray){
-            int rowLength = array.GetLength(0);
+            int rowLength = boardarray.GetLength(0);
             Console.Write("------------------\n");
             for (int i = 0; i < rowLength; i++){
-            Console.Write(string.Format("  {0}  ", array[i]));  
+            Console.Write(string.Format("  {0}  ", boardarray[i]));  
             if (i % 3 == 2){
                 Console.Write("\n");
                 Console.Write("------------------\n");
