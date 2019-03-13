@@ -16,7 +16,7 @@ namespace bkeproject
         }
         
         //print nice spelbord
-        public void printBoard(){
+        private void printBoard(string[] boardarray){
             int rowLength = array.GetLength(0);
             Console.Write("------------------\n");
             for (int i = 0; i < rowLength; i++){
@@ -31,12 +31,17 @@ namespace bkeproject
             }
         }
 
+         public void drawNumberBoard(){
+            string[] arrayNumber = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+            printBoard(arrayNumber);
+        }
+
         public void drawOnBoard(int index, string output){
             array[index] = output; 
-            printBoard();
+            printBoard(array);
         }
 
-        public bool checkWinner1(int index, string namePlayer){
+        public bool checkWinner(int index, string namePlayer){
             if (((array[0] == "X" || array[0] == "O") && array[0] == array[1] && array[0] == array[2]) 
                 ||((array[3] == "X" || array[3] == "O") && array[3] == array[4] && array[3] == array[5])
                 ||((array[6] == "X" || array[6] == "O") && array[6] == array[7] && array[6] == array[8])
@@ -45,36 +50,9 @@ namespace bkeproject
                 ||((array[2] == "X" || array[2] == "O") && array[2] == array[5] && array[2] == array[8])
                 ||((array[0] == "X" || array[0] == "O") && array[0] == array[4] && array[0] == array[8])
                 ||((array[2] == "X" || array[2] == "O") && array[2] == array[4] && array[2] == array[6])){
-                if(array[index] == "X"){
-                    Console.WriteLine(namePlayer + ", jij hebt gewonnen!");
-                    return true;
+                Console.WriteLine(namePlayer + ", jij hebt gewonnen!");
+                return true;
                 }
-                else{
-                    return false;
-                }
-            }
-            else {
-                return false;
-            }
-        }
-
-        public bool checkWinner2(int index, string namePlayer){
-            if (((array[0] == "X" || array[0] == "O") && array[0] == array[1] && array[0] == array[2]) 
-                ||((array[3] == "X" || array[3] == "O") && array[3] == array[4] && array[3] == array[5])
-                ||((array[6] == "X" || array[6] == "O") && array[6] == array[7] && array[6] == array[8])
-                ||((array[0] == "X" || array[0] == "O") && array[0] == array[3] && array[0] == array[6])
-                ||((array[1] == "X" || array[1] == "O") && array[1] == array[4] && array[1] == array[7])
-                ||((array[2] == "X" || array[2] == "O") && array[2] == array[5] && array[2] == array[8])
-                ||((array[0] == "X" || array[0] == "O") && array[0] == array[4] && array[0] == array[8])
-                ||((array[2] == "X" || array[2] == "O") && array[2] == array[4] && array[2] == array[6])){
-                if(array[index] == "O"){
-                   Console.WriteLine(namePlayer + ", jij hebt gewonnen!");
-                   return true;
-                }
-                else{
-                    return false;
-                }
-            }
             else {
                 return false;
             }

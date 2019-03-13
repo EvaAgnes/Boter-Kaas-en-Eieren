@@ -30,27 +30,13 @@ namespace bkeproject
             "Elke hokje heeft een nummer (zie het spelbord hieronder). Je plaatst een 'X' of een 'O' door het\n"+
             "nummer in te typen van het hokje waarin jij jouw symbool wilt plaatsen. Zie het speelveld hieronder:"; 
             Console.WriteLine(explanation);
-            drawNumberBoard();
+            board.drawNumberBoard();
         }
 
-        public void drawNumberBoard(){
-            int[] arrayNumber = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
-            int rowLength = arrayNumber.GetLength(0);
-            Console.Write("------------------\n");
-            for (int i = 0; i < rowLength; i++){
-            Console.Write(string.Format("  {0}  ", arrayNumber[i]));  
-            if (i % 3 == 2){
-                Console.Write("\n");
-                Console.Write("------------------\n");
-            }
-            else {
-                Console.Write("|");
-            }
-            }   
-        }
+       
 
     //welke speler mag beginnen? (random)
-        public void namePlayers(){
+        private void namePlayers(){
             string introduction = "Om te bepalen wie er mag beginnen, hebben we jullie namen nodig!";
             Console.WriteLine(introduction);
             Console.WriteLine("Uitdager, wat is je naam?");
@@ -93,7 +79,7 @@ namespace bkeproject
                     }
                 }
                 board.drawOnBoard(index1, "X");
-                winner = board.checkWinner1(index1, namePlayer1);
+                winner = board.checkWinner(index1, namePlayer1);
                 if(winner == true){
                     break;
                 }
@@ -116,14 +102,14 @@ namespace bkeproject
                     }
                 }
                 board.drawOnBoard(index2, "O");
-                winner = board.checkWinner2(index2, namePlayer2);
+                winner = board.checkWinner(index2, namePlayer2);
                 if(winner == true){
                     break;
                 }
                 }
         }
 
-        public bool checkInput1(int currentIndex){
+        private bool checkInput1(int currentIndex){
             var input = currentIndex + 1;
             if(input >= 1 && input <= 9){
                 if(board.checkLocationFree(currentIndex) == true){
@@ -138,7 +124,7 @@ namespace bkeproject
             return false;
             }
         } 
-        public bool checkInput2(int inputPlayer){
+        private bool checkInput2(int inputPlayer){
             if(inputPlayer > 9 || inputPlayer < 1){
                 Console.WriteLine("Dit getal is ongeldig! Kies een getal tussen 1 en 9.");
                 return true;
@@ -148,7 +134,7 @@ namespace bkeproject
             }
         } 
 
-        public bool checkLetter(string input){ 
+        private bool checkLetter(string input){ 
             long number1 = 0;
             bool canConvert = long.TryParse(input, out number1);
             if(canConvert == false){
