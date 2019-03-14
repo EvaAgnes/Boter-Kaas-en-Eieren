@@ -10,9 +10,9 @@ namespace bkeproject
     {
         static void Main(string[] args){
             var game = new Game();
-            game.explanation();  
-            game.startPlayer();
-            game.changeGameboard();
+            game.ShowExplanation();  
+            game.GetFirstPlayer();
+            game.ChangeGameboard();
         }
     }
 }

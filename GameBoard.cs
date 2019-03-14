@@ -11,16 +11,16 @@ namespace bkeproject
 
         string[] array;
          
-        public void board(){
+        public void Board(){
             array = new string[]{" "," "," "," "," "," "," "," "," "};
         }
         
         //print nice spelbord
-        private void printBoard(string[] boardarray){
-            int rowLength = boardarray.GetLength(0);
+        private void PrintBoard(string[] boardArray){
+            int rowLength = boardArray.GetLength(0);
             Console.Write("------------------\n");
             for (int i = 0; i < rowLength; i++){
-            Console.Write(string.Format("  {0}  ", boardarray[i]));  
+            Console.Write(string.Format("  {0}  ", boardArray[i]));  
             if (i % 3 == 2){
                 Console.Write("\n");
                 Console.Write("------------------\n");
@@ -31,17 +31,17 @@ namespace bkeproject
             }
         }
 
-         public void drawNumberBoard(){
+         public void DrawNumberBoard(){
             string[] arrayNumber = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-            printBoard(arrayNumber);
+            PrintBoard(arrayNumber);
         }
 
-        public void drawOnBoard(int index, string output){
+        public void DrawOnBoard(int index, string output){
             array[index] = output; 
-            printBoard(array);
+            PrintBoard(array);
         }
 
-        public bool checkWinner(int index, string namePlayer){
+        public bool CheckWinner(int index, string namePlayer){
             if (((array[0] == "X" || array[0] == "O") && array[0] == array[1] && array[0] == array[2]) 
                 ||((array[3] == "X" || array[3] == "O") && array[3] == array[4] && array[3] == array[5])
                 ||((array[6] == "X" || array[6] == "O") && array[6] == array[7] && array[6] == array[8])
@@ -58,7 +58,7 @@ namespace bkeproject
             }
         }
 
-        public bool checkLocationFree(int currentIndex){
+        public bool CheckLocationFree(int currentIndex){
             if (array[currentIndex] == "X" || array[currentIndex] == "O"){
                 return true;
             }
@@ -67,7 +67,7 @@ namespace bkeproject
             }
         }
 
-        public bool checkDraw(){
+        public bool CheckDraw(){
             if ((array[0] == "X" || array[0] == "O") && (array[1] == "X" || array[1] == "O") && (array[2] == "X" || array[2] == "O") &&
             (array[3] == "X" || array[3] == "O") && (array[4] == "X" || array[4] == "O") && (array[5] == "X" || array[5] == "O") &&
             (array[6] == "X" || array[6] == "O") && (array[7] == "X" || array[7] == "O") && (array[8] == "X" || array[8] == "O")){
