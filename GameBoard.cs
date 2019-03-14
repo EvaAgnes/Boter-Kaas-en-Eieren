@@ -16,7 +16,7 @@ namespace bkeproject
         }
         
         //print nice spelbord
-        private void PrintBoard(string[] boardArray){
+        public void PrintBoard(string[] boardArray){
             int rowLength = boardArray.GetLength(0);
             Console.Write("------------------\n");
             for (int i = 0; i < rowLength; i++){
@@ -34,6 +34,11 @@ namespace bkeproject
          public void DrawNumberBoard(){
             string[] arrayNumber = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
             PrintBoard(arrayNumber);
+        }
+
+        public void PrintEmptyBoard(){
+            Console.WriteLine(PrintBoard(array));
+
         }
 
         public void DrawOnBoard(int index, string output){
