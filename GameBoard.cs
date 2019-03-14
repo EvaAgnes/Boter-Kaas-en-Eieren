@@ -37,7 +37,7 @@ namespace bkeproject
         }
 
         public void PrintEmptyBoard(){
-            Console.WriteLine(PrintBoard(array));
+            PrintBoard(array);
 
         }
 
