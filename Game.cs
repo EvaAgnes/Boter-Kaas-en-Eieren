@@ -62,8 +62,8 @@ namespace bkeproject
         }
 
         public void ChangeGameboard(){
-            board.PrintEmptyBoard();
             board.DrawNumberBoard();
+            board.PrintEmptyBoard();
             bool winner = false;
             bool draw = false;
             while(winner == false){
